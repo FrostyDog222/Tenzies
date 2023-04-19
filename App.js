@@ -13,6 +13,7 @@ export default function App() {
     const [bestTime, setBestTime] = React.useState(localStorage.getItem('setTime') || 0)
     const [bestRolls, setBestRolls] = React.useState(localStorage.getItem('setRolls') || 0)
     const startTimerOnHeld = dice.some(die => die.isHeld)
+    const diceSound = new Audio('./utility/dice.mp3')
     
     function handleRolls(){
         setRolls(prevRolls => prevRolls + 1)
@@ -64,6 +65,7 @@ export default function App() {
     }
     
     function rollDice() {
+        diceSound.play()
         if(!tenzies) {
             setDice(oldDice => oldDice.map(die => {
                 return die.isHeld ? 
@@ -90,7 +92,7 @@ export default function App() {
     
     const diceElements = dice.map(die => (
         <Die 
-            key={die.id} 
+            key={die.id}
             value={die.value} 
             isHeld={die.isHeld} 
             holdDice={() => holdDice(die.id)}

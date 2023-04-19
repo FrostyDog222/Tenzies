@@ -452,6 +452,7 @@ function App() {
     var startTimerOnHeld = dice.some(function (die) {
         return die.isHeld;
     });
+    var diceSound = new Audio('./utility/dice.mp3');
 
     function handleRolls() {
         setRolls(function (prevRolls) {
@@ -511,6 +512,7 @@ function App() {
     }
 
     function rollDice() {
+        diceSound.play();
         if (!tenzies) {
             setDice(function (oldDice) {
                 return oldDice.map(function (die) {
